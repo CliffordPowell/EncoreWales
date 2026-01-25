@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encore Wales Theatre Group</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="images/logo.jpg" type="image/jpeg">
+    <link href="https://fonts.googleapis.com/css2?family=Impact&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="events.html">Past Events</a></li>
+                    <li><a href="future-events.html">Future Events</a></li>
+                    <li><a href="join.html">Join Us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="policies.html">Policies</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="ticket-banner">
+        <a href="https://www.ticketsource.co.uk/encorewales" target="_blank">Book Tickets</a>
+    </div>
+
+    <div class="hero">
+        <img src="images/EncoreNewBanner.png" alt="Encore Wales Theatre Group - Robin Hood Pantomime">
+    </div>
+
+    <section class="about-section">
+        <div class="container">
+            <h2>Who We Are</h2>
+            <p><strong>Encore was established in early 2024.</strong> We are a fully inclusive group of like-minded people who all share a passion for performing in one form or another. Our purpose is to provide a safe and fun environment for our members to perform and share ideas, while supporting each other on our creative journey.</p>
+            <p>We're always looking for new members and supporters and **welcome all abilities from ages 10+**. Whether you're an actor, singer, dancer, musician, or even a juggler or magician - whatever your talent, you'll find a fun and very warm welcome from everyone at Encore.</p>
+            
+            <div class="slideshow-container"></div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>Email: info@encorewales.co.uk</p>
+                    <p>Venue: The Warehouse, Faith Church, Rogerstone</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Follow Us!</h4>
+                    <div class="social-links">
+                        <a href="https://facebook.com/EncoreSouthWales" target="_blank"><img src="images/facebook-icon.png" alt="Facebook"></a>
+                        <a href="https://instagram.com/encore_wales" target="_blank"><img src="images/instagram-icon.png" alt="Instagram"></a>
+                        <a href="https://tiktok.com/@encore.wales" target="_blank"><img src="images/tiktok-icon.png" alt="TikTok"></a>
+                    </div>
+                </div>
+            </div>
+            <p>&copy; 2025 Encore Wales Theatre Group. All rights reserved.</p>
+            <div class="charity-info" style="font-size: 0.8rem; color: #aaa; margin-top: 20px; text-align: center; max-width: 800px; margin-left: auto; margin-right: auto;">
+                <p style="margin-bottom: 5px;">Encore Wales is a Charitable Incorporated Organisation (CIO), registered in England and Wales (Charity Number 1214191)</p>
+                <p>Our charitable object is "to promote the advancement and improvement of general education in relation to all aspects of the art of drama and musical theatrical performance for all in the local community."</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const links = document.querySelectorAll('nav ul li a');
+            const currentPath = window.location.pathname.split("/").pop();
+
+            links.forEach(link => {
+                if (link.getAttribute('href') === currentPath || (currentPath === '' && link.getAttribute('href') === 'index.html')) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+
+    <script>
+        const slideshowContainer = document.querySelector('.slideshow-container');
+        const totalSlides = 20; // The total number of slides you have
+
+        // Dynamically create the slide elements
+        for (let i = 1; i <= totalSlides; i++) {
+            const slideDiv = document.createElement('div');
+            slideDiv.className = 'slide fade';
+
+            const img = document.createElement('img');
+            img.src = `images/slideshow/slide${i}.jpg`;
+            img.style.width = '100%';
+            img.alt = `Encore theatre group slideshow image ${i}`;
+
+            slideDiv.appendChild(img);
+            slideshowContainer.appendChild(slideDiv);
+        }
+
+        let slideIndex = 0;
+        showSlides();
+
+        function showSlides() {
+            let slides = document.getElementsByClassName("slide");
+            for (let i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            slideIndex++;
+            if (slideIndex > slides.length) {slideIndex = 1}
+            slides[slideIndex-1].style.display = "block";
+            setTimeout(showSlides, 4000); // Change image every 4 seconds
+        }
+    </script>
+
+</body>
+</html>

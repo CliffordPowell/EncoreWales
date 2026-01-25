@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encore Wales Theatre Group</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="images/logo.jpg" type="image/jpeg">
+    <link href="https://fonts.googleapis.com/css2?family=Impact&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="events.html">Past Events</a></li>
+                    <li><a href="future-events.html">Future Events</a></li>
+                    <li><a href="join.html">Join Us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="policies.html">Policies</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="ticket-banner">
+        <a href="https://www.ticketsource.co.uk/encorewales" target="_blank">Book Tickets</a>
+    </div>
+
+    <div class="hero">
+        <img src="images/EncoreNewBanner.png" alt="Encore Wales Theatre Group - Robin Hood Pantomime">
+    </div>
+
+    <section class="about-section">
+    <div class="container">
+        <h2>Our Documentation & Policies</h2>
+        <p>Our commitment to safety, equality, and good governance is paramount. We maintain a number of key policies which are available for our members, parents, and supporters to view upon request.</p>
+
+        <h3 style="margin-top: 30px;">Request a Policy</h3>
+        <p>Please get in touch if you wish to view any of our policies/documentation. Contact us directly at <a href="mailto:info@encorewales.co.uk">info@encorewales.co.uk</a>.</p>
+
+        <ul>
+            <li>Our Constitution</li>
+            <li>Equal Opportunities Policy</li>
+            <li>Heath & Safety Policy</li>
+            <li>GDPR & Privacy</li>
+            <li>Safeguarding / Child and Vulnerable Adult Protection Policy.</li>
+        </ul>
+    </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>Email: info@encorewales.co.uk</p>
+                    <p>Venue: The Warehouse, Faith Church, Rogerstone</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Follow Us!</h4>
+                    <div class="social-links">
+                        <a href="https://facebook.com/EncoreSouthWales" target="_blank"><img src="images/facebook-icon.png" alt="Facebook"></a>
+                        <a href="https://instagram.com/encore_wales" target="_blank"><img src="images/instagram-icon.png" alt="Instagram"></a>
+                        <a href="https://tiktok.com/@encore.wales" target="_blank"><img src="images/tiktok-icon.png" alt="TikTok"></a>
+                    </div>
+                </div>
+            </div>
+            <p>&copy; 2025 Encore Wales Theatre Group. All rights reserved.</p>
+            <div class="charity-info" style="font-size: 0.8rem; color: #aaa; margin-top: 20px; text-align: center; max-width: 800px; margin-left: auto; margin-right: auto;">
+                <p style="margin-bottom: 5px;">Encore Wales is a Charitable Incorporated Organisation (CIO), registered in England and Wales (Charity Number 1214191)</p>
+                <p>Our charitable object is "to promote the advancement and improvement of general education in relation to all aspects of the art of drama and musical theatrical performance for all in the local community."</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const links = document.querySelectorAll('nav ul li a');
+            const currentPath = window.location.pathname.split("/").pop();
+
+            links.forEach(link => {
+                if (link.getAttribute('href') === currentPath || (currentPath === '' && link.getAttribute('href') === 'index.html')) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
