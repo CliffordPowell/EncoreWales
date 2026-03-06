@@ -84,7 +84,7 @@
 </head>
 <body>
     <div class="programme-container">
-        <button class="nav-arrow left" onclick="prevPage()" aria-label="Previous page">&#8592;</button>
+        <button class="nav-arrow left" id="nav-left" onclick="prevPage()" aria-label="Previous page">&#8592;</button>
         <div class="page active" id="page-0">
             <img src="Page2Stage.jpg" alt="Encore Wales Presents From Page to Stage" style="max-width:100%; max-height:100%; border-radius:12px; box-shadow:0 4px 24px rgba(0,0,0,0.12);">
         </div>
@@ -265,11 +265,19 @@
             <p>Thank you for supporting Encore Wales. Special thanks to our cast, crew and those working front of house. We look forward to seeing you again in the near future.<br>
                 Have a safe journey home.</p>
         </div>
-        <button class="nav-arrow right" onclick="nextPage()" aria-label="Next page">&#8594;</button>
+        <button class="nav-arrow right" id="nav-right" onclick="nextPage()" aria-label="Next page">&#8594;</button>
     </div>
     <script>
         let currentPage = 0;
         const totalPages = 11;
+        const navLeft = document.getElementById('nav-left');
+        const navRight = document.getElementById('nav-right');
+
+        function updateArrows() {
+            if (navLeft) navLeft.style.display = currentPage === 0 ? 'none' : '';
+            if (navRight) navRight.style.display = currentPage === totalPages - 1 ? 'none' : '';
+        }
+
         function showPage(idx) {
             for (let i = 0; i < totalPages; i++) {
                 const page = document.getElementById('page-' + i);
@@ -277,24 +285,31 @@
             }
             const target = document.getElementById('page-' + idx);
             if (target) target.classList.add('active');
+            updateArrows();
         }
+
         function prevPage() {
             if (currentPage > 0) {
                 currentPage--;
                 showPage(currentPage);
             }
         }
+
         function nextPage() {
             if (currentPage < totalPages - 1) {
                 currentPage++;
                 showPage(currentPage);
             }
         }
+
         // Optional: Keyboard navigation
         document.addEventListener('keydown', function(e) {
             if (e.key === 'ArrowLeft') prevPage();
             if (e.key === 'ArrowRight') nextPage();
         });
+
+        // Initial arrow state
+        updateArrows();
     </script>
 </body>
 </html>
