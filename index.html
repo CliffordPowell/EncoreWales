@@ -3,16 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Encore Show Programme</title>
+    <title>Encore Wales Presents From Page to Stage</title>
     <link rel="stylesheet" href="style.css">
     <link rel="icon" href="images/logo.jpg" type="image/jpeg">
     <link href="https://fonts.googleapis.com/css2?family=Impact&display=swap" rel="stylesheet">
     <style>
+                .welcome-content {
+                    max-width: 600px;
+                    margin: 0 auto;
+                    text-align: left;
+                }
         body {
             margin: 0;
             padding: 0;
             font-family: 'Segoe UI', Arial, sans-serif;
-            background: #f5f5f5;
+            background: #5b1f1f;
             overflow-x: hidden;
         }
         .programme-container {
@@ -22,7 +27,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background: #fff;
+            background: #5b1f1f;
         }
         .page {
             display: none;
@@ -33,8 +38,8 @@
             max-width: 600px;
             height: 80vh;
             margin: auto;
-            background: #fff;
-            box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+            background: transparent;
+            box-shadow: none;
             border-radius: 12px;
             padding: 2em;
             text-align: center;
@@ -74,40 +79,201 @@
     <div class="programme-container">
         <button class="nav-arrow left" onclick="prevPage()" aria-label="Previous page">&#8592;</button>
         <div class="page active" id="page-0">
-            <h1>Encore Theatre Company</h1>
-            <h2>Show Programme</h2>
-            <p><em>Front Cover</em></p>
+            <img src="Page2Stage.jpg" alt="Encore Wales Presents From Page to Stage" style="max-width:100%; max-height:100%; border-radius:12px; box-shadow:0 4px 24px rgba(0,0,0,0.12);">
         </div>
         <div class="page" id="page-1">
-            <h2>Welcome Note</h2>
-            <p>Welcome to our show! We are delighted to have you join us for an evening of entertainment and community spirit. Enjoy the performance!</p>
+            <div class="welcome-content">
+                <h2>Welcome</h2>
+                <p>Welcome to this evening’s Encore Wales showcase, <strong>From Page to Stage</strong>. With World Book Day falling this week, it felt like the perfect theme—celebrating the journey of stories from the page to the stage.</p>
+                <p>Encore Wales has now been established for two years, and it has been an exciting time for us as a group. Last year we were delighted to achieve charitable status, opening up new opportunities for fundraising and helping us grow what we do in the community.</p>
+                <p>We also staged our biggest production to date, <strong>Robin Hood</strong>, which received wonderful feedback from audiences and participants alike. It was a real milestone for us and a reminder of what our talented members can achieve together.</p>
+                <p>Tonight’s performance marks our fifth show and fourth showcase, and we’re delighted to share it with you. Looking ahead, we’re pleased to announce that later this year we’ll be performing <strong>School of Rock</strong>. Dates and audition details will be announced very soon.</p>
+            </div>
         </div>
-        <div class="page" id="page-2">
-            <h2>Act 1</h2>
-            <p>Act 1 features a variety of performances from our talented cast. Sit back and enjoy the first half of the show!</p>
+        <div class="page" id="page-9">
+            <h2>Credits</h2>
+            <div style="font-size:1.2em; margin: 2em 0;">
+                <p><strong>Musical Director</strong><br>Kate Blakemore</p>
+                <p><strong>Tech Desk</strong><br>Felix & Rich</p>
+            </div>
         </div>
-        <div class="page" id="page-3">
-            <h2>Interval</h2>
-            <p>Take a break, grab some refreshments, and get ready for Act 2!</p>
-        </div>
-        <div class="page" id="page-4">
-            <h2>Act 2</h2>
-            <p>The excitement continues in Act 2. We hope you enjoy the rest of the show!</p>
-        </div>
-        <div class="page" id="page-5">
+        <div class="page" id="page-10">
             <h2>Thanks</h2>
             <p>Thank you for supporting Encore Theatre Company. Special thanks to our cast, crew, sponsors, and you, our wonderful audience!</p>
+        </div>
+        <div class="page" id="page-2">
+            <div class="welcome-content">
+                <h2>Welcome (cont.)</h2>
+                <p>We should also mention that this evening’s showcase happens to clash with the Wales vs Ireland match in the Six Nations Championship. We’re grateful you’ve chosen to spend the evening with us. And if anyone does happen to hear the score, please keep it to yourself for now—some people may be planning to watch it later and would rather avoid spoilers!</p>
+                <p>Our appreciation goes to all Encore Wales members who have contributed to tonight’s performance, both on stage and behind the scenes. Their time, enthusiasm and hard work are what make evenings like this possible. We’re also grateful to Faith Church and The Loading Bay for providing refreshments.</p>
+                <p>Encore Wales is always keen to welcome new members. As our productions grow, we’ll need more helping hands both on stage and backstage—from performers and crew to chaperones and other vital roles.</p>
+                <p>For now, sit back, relax, and enjoy the show. 🎭</p>
+            </div>
+        </div>
+        <div class="page" id="page-3">
+            <h2>Act 1: Kids Favourites</h2>
+            <div style="max-width:600px;margin:0 auto;text-align:center;">
+                <div style="margin-bottom:1.5em;">
+                    <div style="margin-bottom:1em;">
+                        <span style="font-size:1.3em;font-weight:bold;">Spoken Intro</span> <span style="font-size:1em;">- Dr Seuss</span><br>
+                        <span style="font-size:0.95em;color:#888;">Jerry</span>
+                    </div>
+                    <div style="margin-bottom:1em;">
+                        <span style="font-size:1.3em;font-weight:bold;">Oh the Thinks you can Think</span> <span style="font-size:1em;">- Dr Seuss</span><br>
+                        <span style="font-size:0.95em;color:#888;">All</span>
+                    </div>
+                    <div style="margin-bottom:1em;">
+                        <span style="font-size:1.3em;font-weight:bold;">One Fish, Two Fish...</span> <span style="font-size:1em;">- Dr Seuss</span><br>
+                        <span style="font-size:0.95em;color:#888;">Eve</span>
+                    </div>
+                    <div style="margin-bottom:1em;">
+                        <span style="font-size:1.3em;font-weight:bold;">Naughty</span> <span style="font-size:1em;">- Matilda</span><br>
+                        <span style="font-size:0.95em;color:#888;">Stevie</span>
+                    </div>
+                    <div style="margin-bottom:1em;">
+                        <span style="font-size:1.3em;font-weight:bold;">My House</span> <span style="font-size:1em;">- Matilda</span><br>
+                        <span style="font-size:0.95em;color:#888;">Holly</span>
+                    </div>
+                    <div style="margin-bottom:1em;">
+                        <span style="font-size:1.3em;font-weight:bold;">My Grand Plan</span> <span style="font-size:1em;">- Percy Jackson</span><br>
+                        <span style="font-size:0.95em;color:#888;">Sophie</span>
+                    </div>
+                    <div style="margin-bottom:1em;">
+                        <span style="font-size:1.3em;font-weight:bold;">Supercalifragilisticexpialidocious</span> <span style="font-size:1em;">- Mary Poppins</span><br>
+                        <span style="font-size:0.95em;color:#888;">Ariana & Eve</span>
+                    </div>
+                    <div style="margin-bottom:1em;">
+                        <span style="font-size:1.3em;font-weight:bold;">How Far I'll Go</span> <span style="font-size:1em;">- Moana</span><br>
+                        <span style="font-size:0.95em;color:#888;">Halle & Millie</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="page" id="page-4">
+            <h2>Act 1: Classic Literature</h2>
+            <div style="max-width:600px;margin:0 auto;text-align:center;">
+                <div>
+                    <div style="margin-bottom:1em;">
+                        <span style="font-size:1.3em;font-weight:bold;">Some Things are Meant to Be</span> <span style="font-size:1em;">- Little Women</span><br>
+                        <span style="font-size:0.95em;color:#888;">Kate & Lara</span>
+                    </div>
+                    <div style="margin-bottom:1em;">
+                        <span style="font-size:1.3em;font-weight:bold;">I Dreamed a Dream</span> <span style="font-size:1em;">- Les Miserables</span><br>
+                        <span style="font-size:0.95em;color:#888;">Ariana</span>
+                    </div>
+                    <div style="margin-bottom:1em;">
+                        <span style="font-size:1.3em;font-weight:bold;">Stars</span> <span style="font-size:1em;">- Les Miserables</span><br>
+                        <span style="font-size:0.95em;color:#888;">Matt</span>
+                    </div>
+                    <div style="margin-bottom:1em;">
+                        <span style="font-size:1.3em;font-weight:bold;">On My Own</span> <span style="font-size:1em;">- Les Miserables</span><br>
+                        <span style="font-size:0.95em;color:#888;">Eve</span>
+                    </div>
+                    <div style="margin-bottom:1em;">
+                        <span style="font-size:1.3em;font-weight:bold;">Moonfall</span> <span style="font-size:1em;">- The Mystery of Edwin Drood (Charles Dickens)</span><br>
+                        <span style="font-size:0.95em;color:#888;">Lara</span>
+                    </div>
+                    <div style="margin-bottom:1em;">
+                        <span style="font-size:1.3em;font-weight:bold;">The Worst Pies In London</span> <span style="font-size:1em;">- Sweeny Todd</span><br>
+                        <span style="font-size:0.95em;color:#888;">Kelsey</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="page" id="page-5">
+            <h2>Intermission</h2>
+            <p>Time to stretch your legs, enjoy a drink, and we’ll open the curtain again very soon.</p>
+        </div>
+        <div class="page" id="page-6">
+            <h2>Act 2: Fairy Tales</h2>
+            <div style="max-width:600px;margin:0 auto;text-align:center;">
+                <div style="margin-bottom:2em;">
+                    <div style="margin-bottom:1em;">
+                        <span style="font-size:1.3em;font-weight:bold;">Gaston</span> <span style="font-size:1em;">- Beauty & The Beast</span><br>
+                        <span style="font-size:0.95em;color:#888;">All</span>
+                    </div>
+                    <div style="margin-bottom:1em;">
+                        <span style="font-size:1.3em;font-weight:bold;">I Opened A Book</span> <span style="font-size:1em;"></span><br>
+                        <span style="font-size:0.95em;color:#888;">Halle</span>
+                    </div>
+                    <div style="margin-bottom:1em;">
+                        <span style="font-size:1.3em;font-weight:bold;">When Will My Life Begin</span> <span style="font-size:1em;">- Tangled</span><br>
+                        <span style="font-size:0.95em;color:#888;">Halle</span>
+                    </div>
+                    <div style="margin-bottom:1em;">
+                        <span style="font-size:1.3em;font-weight:bold;">Giants in the Sky</span> <span style="font-size:1em;">- Into the Woods</span><br>
+                        <span style="font-size:0.95em;color:#888;">Jerry</span>
+                    </div>
+                    <div style="margin-bottom:1em;">
+                        <span style="font-size:1.3em;font-weight:bold;">Agony</span> <span style="font-size:1em;">- Into the Woods</span><br>
+                        <span style="font-size:0.95em;color:#888;">Holly & Kelsey</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="page" id="page-7">
+            <h2>Act 2: Modern Day Classics</h2>
+            <div style="max-width:600px;margin:0 auto;text-align:center;">
+                <div style="margin-bottom:2em;">
+                    <div style="margin-bottom:1em;">
+                        <span style="font-size:1.3em;font-weight:bold;">What is this Feeling?</span> <span style="font-size:1em;">- Wicked</span><br>
+                        <span style="font-size:0.95em;color:#888;">Sophie & Lara</span>
+                    </div>
+                    <div style="margin-bottom:1em;">
+                        <span style="font-size:1.3em;font-weight:bold;">Boys Don't Cry</span> <span style="font-size:1em;">- The Wedding Singer</span><br>
+                        <span style="font-size:0.95em;color:#888;">Harry</span>
+                    </div>
+                    <div style="margin-bottom:1em;">
+                        <span style="font-size:1.3em;font-weight:bold;">Hedwig's Theme</span> <span style="font-size:1em;">- Harry Potter</span><br>
+                        <span style="font-size:0.95em;color:#888;">Kate</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="page" id="page-8">
+            <h2>Act 2: Annie & Finale</h2>
+            <div style="max-width:600px;margin:0 auto;text-align:center;">
+                <div style="margin-bottom:2em;">
+                    <div style="margin-bottom:1em;">
+                        <span style="font-size:1.3em;font-weight:bold;">Hard Knock Life</span> <span style="font-size:1em;">- Annie</span><br>
+                        <span style="font-size:0.95em;color:#888;">Kids</span>
+                    </div>
+                    <div style="margin-bottom:1em;">
+                        <span style="font-size:1.3em;font-weight:bold;">I Don't need anything</span> <span style="font-size:1em;">- Annie</span><br>
+                        <span style="font-size:0.95em;color:#888;">Eve & Matt</span>
+                    </div>
+                    <div style="margin-bottom:1em;">
+                        <span style="font-size:1.3em;font-weight:bold;">Tomorrow</span> <span style="font-size:1em;">- Annie</span><br>
+                        <span style="font-size:0.95em;color:#888;">All</span>
+                    </div>
+                    <div style="margin-bottom:1em;">
+                        <span style="font-size:1.3em;font-weight:bold;">Oh the Places You'll Go</span><br>
+                        <span style="font-size:0.95em;color:#888;">Older Cast</span>
+                    </div>
+                    <div style="margin-bottom:1em;">
+                        <span style="font-size:1.3em;font-weight:bold;">Pure Imagination</span> <span style="font-size:1em;">- Charlie & The Chocolate Factory</span><br>
+                        <span style="font-size:0.95em;color:#888;">All</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="page" id="page-9">
+            <h2>Thanks</h2>
+            <p>Thank you for supporting Encore Wales. Special thanks to our cast, crew and those working front of house. We look forward to seeing you again in the near future.<br>
+                Have a safe journey home.</p>
         </div>
         <button class="nav-arrow right" onclick="nextPage()" aria-label="Next page">&#8594;</button>
     </div>
     <script>
         let currentPage = 0;
-        const totalPages = 6;
+        const totalPages = 11;
         function showPage(idx) {
             for (let i = 0; i < totalPages; i++) {
-                document.getElementById('page-' + i).classList.remove('active');
+                const page = document.getElementById('page-' + i);
+                if (page) page.classList.remove('active');
             }
-            document.getElementById('page-' + idx).classList.add('active');
+            const target = document.getElementById('page-' + idx);
+            if (target) target.classList.add('active');
         }
         function prevPage() {
             if (currentPage > 0) {
@@ -127,117 +293,5 @@
             if (e.key === 'ArrowRight') nextPage();
         });
     </script>
-</body>
-</html>
-    <link rel="stylesheet" href="style.css">
-    <link rel="icon" href="images/logo.jpg" type="image/jpeg">
-    <link href="https://fonts.googleapis.com/css2?family=Impact&display=swap" rel="stylesheet">
-</head>
-<body>
-
-    <header>
-        <div class="container">
-            <nav>
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="events.html">Past Events</a></li>
-                    <li><a href="future-events.html">Future Events</a></li>
-                    <li><a href="join.html">Join Us</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                    <li><a href="policies.html">Policies</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
-
-    <div class="ticket-banner">
-        <a href="https://www.ticketsource.co.uk/encorewales" target="_blank">Book Tickets</a>
-    </div>
-
-    <div class="hero">
-        <img src="images/EncoreNewBanner.png" alt="Encore Wales Theatre Group - Robin Hood Pantomime">
-    </div>
-
-    <section class="about-section">
-        <div class="container">
-            <h2>WE ARE ENCORE</h2>
-            <p><strong>Encore was established in early 2024.</strong> We are a fully inclusive group of like-minded people who all share a passion for performing in one form or another. Our purpose is to provide a safe and fun environment for our members to perform and share ideas, while supporting each other on our creative journey.</p>
-            <p>We're always looking for new members and supporters and **welcome all abilities from ages 10+**. Whether you're an actor, singer, dancer, musician, or even a juggler or magician - whatever your talent, you'll find a fun and very warm welcome from everyone at Encore.</p>
-            
-            <div class="slideshow-container"></div>
-        </div>
-    </section>
-
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h4>Contact</h4>
-                    <p>Email: info@encorewales.co.uk</p>
-                    <p>Venue: The Warehouse, Faith Church, Rogerstone</p>
-                </div>
-                <div class="footer-section">
-                    <h4>Follow Us!</h4>
-                    <div class="social-links">
-                        <a href="https://facebook.com/EncoreSouthWales" target="_blank"><img src="images/facebook-icon.png" alt="Facebook"></a>
-                        <a href="https://instagram.com/encore_wales" target="_blank"><img src="images/instagram-icon.png" alt="Instagram"></a>
-                        <a href="https://tiktok.com/@encore.wales" target="_blank"><img src="images/tiktok-icon.png" alt="TikTok"></a>
-                    </div>
-                </div>
-            </div>
-            <p>&copy; 2025 Encore Wales Theatre Group. All rights reserved.</p>
-            <div class="charity-info" style="font-size: 0.8rem; color: #aaa; margin-top: 20px; text-align: center; max-width: 800px; margin-left: auto; margin-right: auto;">
-                <p style="margin-bottom: 5px;">Encore Wales is a Charitable Incorporated Organisation (CIO), registered in England and Wales (Charity Number 1214191)</p>
-                <p>Our charitable object is "to promote the advancement and improvement of general education in relation to all aspects of the art of drama and musical theatrical performance for all in the local community."</p>
-            </div>
-        </div>
-    </footer>
-
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const links = document.querySelectorAll('nav ul li a');
-            const currentPath = window.location.pathname.split("/").pop();
-
-            links.forEach(link => {
-                if (link.getAttribute('href') === currentPath || (currentPath === '' && link.getAttribute('href') === 'index.html')) {
-                    link.classList.add('active');
-                }
-            });
-        });
-    </script>
-
-    <script>
-        const slideshowContainer = document.querySelector('.slideshow-container');
-        const totalSlides = 20; // The total number of slides you have
-
-        // Dynamically create the slide elements
-        for (let i = 1; i <= totalSlides; i++) {
-            const slideDiv = document.createElement('div');
-            slideDiv.className = 'slide fade';
-
-            const img = document.createElement('img');
-            img.src = `images/slideshow/slide${i}.jpg`;
-            img.style.width = '100%';
-            img.alt = `Encore theatre group slideshow image ${i}`;
-
-            slideDiv.appendChild(img);
-            slideshowContainer.appendChild(slideDiv);
-        }
-
-        let slideIndex = 0;
-        showSlides();
-
-        function showSlides() {
-            let slides = document.getElementsByClassName("slide");
-            for (let i = 0; i < slides.length; i++) {
-                slides[i].style.display = "none";
-            }
-            slideIndex++;
-            if (slideIndex > slides.length) {slideIndex = 1}
-            slides[slideIndex-1].style.display = "block";
-            setTimeout(showSlides, 4000); // Change image every 4 seconds
-        }
-    </script>
-
 </body>
 </html>
