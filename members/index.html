@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encore Wales Members Portal</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="icon" href="../images/logo.jpg" type="image/jpeg">
+    <link href="https://fonts.googleapis.com/css2?family=Impact&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../events.html">Past Events</a></li>
+                    <li><a href="../future-events.html">Future Events</a></li>
+                    <li><a href="../join.html">Join Us</a></li>
+                    <li><a href="../contact.html">Contact</a></li>
+                    <li><a href="../policies.html">Policies</a></li>
+                    <li><a href="index.html">Members Portal</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <div class="hero">
+        <img src="../images/EncoreNewBanner.png" alt="Encore Wales Theatre Group - Members Portal">
+    </div>
+    <section class="about-section">
+        <div class="container">
+            <h2>Welcome to the Encore Wales Members Portal</h2>
+            <p>This is your gateway to exclusive member resources, rehearsal materials, and group communications.</p>
+            <ul>
+                <li>Access rehearsal material and resources</li>
+                <li>Watch exclusive YouTube videos</li>
+                <li>Order your Encore Wales t-shirt or hoodie</li>
+            </ul>
+        </div>
+    <div class="container" style="max-width:400px;margin:2em auto;">
+        <form id="login-form" class="amplify-container">
+            <label for="login-username">Email:</label><br>
+            <input type="email" id="login-username" name="login-username" required><br><br>
+            <label for="login-password">Password:</label><br>
+            <input type="password" id="login-password" name="login-password" required><br><br>
+            <button type="submit">Sign In</button>
+            <p style="margin-top:10px;">
+                <a href="#" id="forgot-password-link">Forgot Password?</a>
+            </p>
+            <div id="login-error" style="color:red;margin-top:10px;"></div>
+        </form>
+        <form id="forgot-form" class="amplify-container" style="display:none;margin-top:2em;">
+            <label for="forgot-email">Email:</label><br>
+            <input type="email" id="forgot-email" name="forgot-email" required><br><br>
+            <button type="submit">Send Reset Code</button>
+            <div id="forgot-error" style="color:red;margin-top:10px;"></div>
+            <div id="forgot-success" style="color:green;margin-top:10px;"></div>
+        </form>
+        <form id="reset-form" class="amplify-container" style="display:none;margin-top:2em;">
+            <label for="reset-email">Email:</label><br>
+            <input type="email" id="reset-email" name="reset-email" required><br><br>
+            <label for="reset-code">Reset Code:</label><br>
+            <input type="text" id="reset-code" name="reset-code" required><br><br>
+            <label for="reset-password">New Password:</label><br>
+            <input type="password" id="reset-password" name="reset-password" required><br><br>
+            <button type="submit">Reset Password</button>
+            <div id="reset-error" style="color:red;margin-top:10px;"></div>
+            <div id="reset-success" style="color:green;margin-top:10px;"></div>
+        </form>
+    </div>
+    </section>
+    <script src="https://cdn.jsdelivr.net/npm/aws-amplify@4.3.24/dist/aws-amplify.min.js"></script>
+    <script src="amplify-config.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        window.aws_amplify.Amplify.configure(window.amplifyConfig);
+        window.aws_amplify.Auth.currentAuthenticatedUser()
+            .then(function(user) {
+                // User is signed in, do nothing
+            })
+            .catch(function(err) {
+                // No redirect, just show the login form
+            });
+        var loginForm = document.getElementById('login-form');
+        var forgotForm = document.getElementById('forgot-form');
+        var resetForm = document.getElementById('reset-form');
+        var forgotLink = document.getElementById('forgot-password-link');
+        forgotLink.onclick = function(e) {
+            e.preventDefault();
+            loginForm.style.display = 'none';
+            forgotForm.style.display = 'block';
+        };
+        forgotForm.onsubmit = async function(e) {
+            e.preventDefault();
+            var email = document.getElementById('forgot-email').value;
+            var errorDiv = document.getElementById('forgot-error');
+            var successDiv = document.getElementById('forgot-success');
+            errorDiv.textContent = '';
+            successDiv.textContent = '';
+            try {
+                await window.aws_amplify.Auth.forgotPassword(email);
+                successDiv.textContent = 'A reset code has been sent to your email.';
+                forgotForm.style.display = 'none';
+                resetForm.style.display = 'block';
+                document.getElementById('reset-email').value = email;
+            } catch (err) {
+                errorDiv.textContent = err.message || 'Failed to send reset code.';
+            }
+            return false;
+        };
+        resetForm.onsubmit = async function(e) {
+            e.preventDefault();
+            var email = document.getElementById('reset-email').value;
+            var code = document.getElementById('reset-code').value;
+            var password = document.getElementById('reset-password').value;
+            var errorDiv = document.getElementById('reset-error');
+            var successDiv = document.getElementById('reset-success');
+            errorDiv.textContent = '';
+            successDiv.textContent = '';
+            try {
+                await window.aws_amplify.Auth.forgotPasswordSubmit(email, code, password);
+                successDiv.textContent = 'Password reset successful! You can now sign in.';
+                resetForm.style.display = 'none';
+                loginForm.style.display = 'block';
+            } catch (err) {
+                errorDiv.textContent = err.message || 'Failed to reset password.';
+            }
+            return false;
+        };
+        loginForm.onsubmit = async function(e) {
+            e.preventDefault();
+            var username = document.getElementById('login-username').value;
+            var password = document.getElementById('login-password').value;
+            var errorDiv = document.getElementById('login-error');
+            errorDiv.textContent = '';
+            try {
+                await window.aws_amplify.Auth.signIn(username, password);
+                window.location.href = 'members.html';
+            } catch (err) {
+                errorDiv.textContent = err.message || 'Sign-in failed.';
+            }
+            return false;
+        };
+    });
+    </script>
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>Email: info@encorewales.co.uk</p>
+                    <p>Venue: The Warehouse, Faith Church, Rogerstone</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Follow Us!</h4>
+                    <div class="social-links">
+                        <a href="https://facebook.com/EncoreSouthWales" target="_blank"><img src="../images/facebook-icon.png" alt="Facebook"></a>
+                        <a href="https://instagram.com/encore_wales" target="_blank"><img src="../images/instagram-icon.png" alt="Instagram"></a>
+                        <a href="https://tiktok.com/@encore.wales" target="_blank"><img src="../images/tiktok-icon.png" alt="TikTok"></a>
+                    </div>
+                </div>
+            </div>
+            <p>&copy; 2026 Encore Wales Theatre Group. All rights reserved.</p>
+            <div class="charity-info" style="font-size: 0.8rem; color: #aaa; margin-top: 20px; text-align: center; max-width: 800px; margin-left: auto; margin-right: auto;">
+                <p style="margin-bottom: 5px;">Encore Wales is a Charitable Incorporated Organisation (CIO), registered in England and Wales (Charity Number 1214191)</p>
+                <p>Our charitable object is "to promote the advancement and improvement of general education in relation to all aspects of the art of drama and musical theatrical performance for all in the local community."</p>
+            </div>
+        </div>
+    </footer>
+    <!-- AWS Cognito UI integration would go here -->
+</body>
+</html>

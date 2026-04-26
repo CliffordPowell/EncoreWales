@@ -20,6 +20,7 @@
                     <li><a href="join.html">Join Us</a></li>
                     <li><a href="contact.html">Contact</a></li>
                     <li><a href="policies.html">Policies</a></li>
+                    <li><a href="members/index.html">Members Portal</a></li>
                 </ul>
             </nav>
         </div>
@@ -33,28 +34,22 @@
         <img src="images/EncoreNewBanner.png" alt="Encore Wales Theatre Group - Future Events">
     </div>
 
+    <!-- Future events section (no current event) -->
     <section class="about-section">
         <div class="container">
-            <h2>Next Event: From Page to Stage</h2>
+            <h2>Next Event: School of Rock</h2>
             <div class="event-card current-event">
                 <div class="poster-container">
-                    <img src="images/page2stage.webp" alt="From Page to Stage Event Poster" class="event-poster" style="max-width:350px;width:100%;border-radius:8px;box-shadow:0 2px 8px #0002;margin-bottom:20px;">
+                    <a href="SchoolOfRock.html"><img src="images/SchoolOfRock.jpeg" alt="School of Rock Poster" class="event-poster" style="max-width:350px;width:100%;border-radius:8px;box-shadow:0 2px 8px #0002;margin-bottom:20px;"></a>
                 </div>
                 <div class="event-details">
-                    <h3>Encore Presents an Evening of Music and Theatre</h3>
-                    <p>Tying in with <strong>World Book Day 2026</strong>, please be our guest as we bring you our variations on some of the most popular (and some less so!) tales to have made it from the pages of a book to the stage or screen.</p>
-                    <p>Once again we'll be bringing you our cabaret format and want another full house with no empty chairs at empty tables.</p>
-                    <p><strong>"Pay What You Can" pricing</strong> – we aim to allow all to experience the arts.</p>
+                    <h3>Encore Presents: School of Rock</h3>
+                    <p>Get ready to rock! Encore Wales is proud to present <strong>School of Rock</strong>, a high-energy musical based on the hit movie. Join us for an electrifying night of music, comedy, and unforgettable performances by our talented cast.</p>
                     <div class="event-info-grid">
-                        <p><strong>Event Details</strong></p>
-                        <ul>
-                            <li><strong>Date:</strong> March 2026 (TBC)</li>
-                            <li><strong>Doors Open:</strong> 7:00 PM</li>
-                            <li><strong>Starts:</strong> 7:30 PM</li>
-                            <li><strong>Location:</strong> The Warehouse, Faith Church, Rogerstone, NP10 9FQ</li>
-                        </ul>
+                        <p><strong>Date:</strong> Coming Soon</p>
+                        <p><strong>Venue:</strong> The Warehouse, Faith Church, Rogerstone</p>
                     </div>
-                    <p style="margin-top: 30px;"><a href="https://www.ticketsource.co.uk/encorewales" target="_blank" class="cta-button ticket-button">Book Tickets</a></p>
+                    <p style="margin-top: 30px;"><a href="SchoolOfRock.html" class="cta-button ticket-button">More Info</a></p>
                 </div>
             </div>
         </div>
@@ -97,6 +92,27 @@
             });
         });
     </script>
+    <script>
+document.addEventListener('DOMContentLoaded', function() {
+    var portalLinks = document.querySelectorAll('a[href="members/index.html"]');
+    portalLinks.forEach(function(link) {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            if (window.aws_amplify && window.aws_amplify.Auth) {
+                window.aws_amplify.Auth.currentAuthenticatedUser()
+                    .then(function() {
+                        window.location.href = 'members/members.html';
+                    })
+                    .catch(function() {
+                        window.location.href = 'members/index.html';
+                    });
+            } else {
+                window.location.href = 'members/index.html';
+            }
+        });
+    });
+});
+</script>
 
 </body>
 </html>

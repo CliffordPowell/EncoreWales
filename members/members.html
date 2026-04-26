@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encore Wales - Members Area</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="icon" href="../images/logo.jpg" type="image/jpeg">
+    <link href="https://fonts.googleapis.com/css2?family=Impact&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../events.html">Past Events</a></li>
+                    <li><a href="../future-events.html">Future Events</a></li>
+                    <li><a href="../join.html">Join Us</a></li>
+                    <li><a href="../contact.html">Contact</a></li>
+                    <li><a href="../policies.html">Policies</a></li>
+                    <li><a href="index.html">Members Portal</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <div class="hero">
+        <img src="../images/EncoreNewBanner.png" alt="Encore Wales Theatre Group - Members Area">
+    </div>
+    <section class="about-section">
+        <div class="container" style="max-width:600px;margin:2em auto;">
+            <h2>Members Area</h2>
+            <nav class="members-submenu" style="margin-bottom:1.5em;">
+                <ul style="display:flex;gap:1em;list-style:none;padding:0;">
+                    <li><a href="members.html">Dashboard</a></li>
+                    <li><a href="tshirt.html">Order T-Shirt</a></li>
+                    <li><a href="hoodie.html">Order Hoodie</a></li>
+                    <li><a href="#">Rehearsal Material</a></li>
+                    <li><a href="#">YouTube Videos</a></li>
+                </ul>
+            </nav>
+            <div id="members-content" style="display:none;">
+                <p>Welcome to the Encore Wales Members Area!</p>
+                <ul>
+                    <li><a href="tshirt.html">Order a T-Shirt</a></li>
+                    <li><a href="hoodie.html">Order a Hoodie</a></li>
+                    <li><a href="#">Rehearsal Material (coming soon)</a></li>
+                    <li><a href="#">YouTube Videos (coming soon)</a></li>
+                </ul>
+                <button id="signout-btn">Sign Out</button>
+            </div>
+            <div id="members-error" style="color:red;margin-top:10px;"></div>
+            <div id="members-signin-link" style="margin-top:20px; display:none;">
+                <a href="index.html">Go to Sign In Page</a>
+            </div>
+            <div style="position: absolute; top: 1.5em; right: 2em;">
+                <div id="user-icon" style="display:inline-block;cursor:pointer;position:relative;">
+                    <img src="../images/user-icon.png" alt="User" style="width:36px;height:36px;border-radius:50%;background:#222;">
+                    <div id="user-menu" style="display:none;position:absolute;right:0;top:40px;background:#222;border:1px solid #444;border-radius:6px;box-shadow:0 2px 8px #0003;z-index:1001;min-width:140px;">
+                        <a href="details.html" style="display:block;padding:10px 16px;color:#fff;text-decoration:none;">Review Details</a>
+                        <a href="#" id="user-logout" style="display:block;padding:10px 16px;color:#fff;text-decoration:none;">Log Out</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>Email: info@encorewales.co.uk</p>
+                    <p>Venue: The Warehouse, Faith Church, Rogerstone</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Follow Us!</h4>
+                    <div class="social-links">
+                        <a href="https://facebook.com/EncoreSouthWales" target="_blank"><img src="../images/facebook-icon.png" alt="Facebook"></a>
+                        <a href="https://instagram.com/encore_wales" target="_blank"><img src="../images/instagram-icon.png" alt="Instagram"></a>
+                        <a href="https://tiktok.com/@encore.wales" target="_blank"><img src="../images/tiktok-icon.png" alt="TikTok"></a>
+                    </div>
+                </div>
+            </div>
+            <p>&copy; 2026 Encore Wales Theatre Group. All rights reserved.</p>
+            <div class="charity-info" style="font-size: 0.8rem; color: #aaa; margin-top: 20px; text-align: center; max-width: 800px; margin-left: auto; margin-right: auto;">
+                <p style="margin-bottom: 5px;">Encore Wales is a Charitable Incorporated Organisation (CIO), registered in England and Wales (Charity Number 1214191)</p>
+                <p>Our charitable object is "to promote the advancement and improvement of general education in relation to all aspects of the art of drama and musical theatrical performance for all in the local community."</p>
+            </div>
+        </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/aws-amplify@4.3.24/dist/aws-amplify.min.js"></script>
+    <script src="amplify-config.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        window.aws_amplify.Amplify.configure(window.amplifyConfig);
+        var errorDiv = document.getElementById('members-error');
+        var membersContent = document.getElementById('members-content');
+        var signinLink = document.getElementById('members-signin-link');
+        window.aws_amplify.Auth.currentAuthenticatedUser()
+            .then(function(user) {
+                membersContent.style.display = 'block';
+            })
+            .catch(function(err) {
+                console.error('Auth error:', err);
+                errorDiv.textContent = 'You must be signed in to access this page. (' + (err && err.message ? err.message : err) + ')';
+                signinLink.style.display = 'block';
+                // No redirect here to avoid loop
+            });
+        var btn = document.getElementById('signout-btn');
+        if (btn) {
+            btn.onclick = function() {
+                window.aws_amplify.Auth.signOut().then(() => window.location.href = 'index.html');
+            };
+        }
+        var userIcon = document.getElementById('user-icon');
+        var userMenu = document.getElementById('user-menu');
+        if (userIcon && userMenu) {
+            userIcon.addEventListener('click', function(e) {
+                e.stopPropagation();
+                userMenu.style.display = (userMenu.style.display === 'block') ? 'none' : 'block';
+            });
+            document.addEventListener('click', function() {
+                userMenu.style.display = 'none';
+            });
+        }
+        var userLogout = document.getElementById('user-logout');
+        if (userLogout) {
+            userLogout.onclick = function(e) {
+                e.preventDefault();
+                window.aws_amplify.Auth.signOut().then(() => window.location.href = 'index.html');
+            };
+        }
+    });
+    </script>
+</body>
+</html>

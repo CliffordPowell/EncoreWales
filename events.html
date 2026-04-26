@@ -19,6 +19,7 @@
                     <li><a href="join.html">Join Us</a></li>
                     <li><a href="contact.html">Contact</a></li>
                     <li><a href="policies.html">Policies</a></li>
+                    <li><a href="members/index.html">Members Portal</a></li>
                 </ul>
             </nav>
         </div>
@@ -32,6 +33,27 @@
         <div class="container">
             <h2>Past Events</h2>
             <div class="past-events-list">
+                <!-- From Page to Stage (moved from future events) -->
+                <div class="event-card past-event">
+                    <div class="poster-container">
+                        <img src="images/page2stage.webp" alt="From Page to Stage Event Poster" class="event-poster" style="max-width:350px;width:100%;border-radius:8px;box-shadow:0 2px 8px #0002;margin-bottom:20px;">
+                    </div>
+                    <div class="event-details">
+                        <h4>From Page to Stage</h4>
+                        <p class="event-type">Encore Presents an Evening of Music and Theatre</p>
+                        <p class="event-description">Tying in with <strong>World Book Day 2026</strong>, please be our guest as we bring you our variations on some of the most popular (and some less so!) tales to have made it from the pages of a book to the stage or screen.</p>
+                        <p>Once again we'll be bringing you our cabaret format and want another full house with no empty chairs at empty tables.</p>
+                        <p><strong>"Pay What You Can" pricing</strong> – we aim to allow all to experience the arts.</p>
+                        <div class="event-info-grid">
+                            <p><strong>DATES:</strong> March 2026 (TBC)</p>
+                            <p><strong>VENUE:</strong> The Warehouse, Faith Church, Rogerstone, NP10 9FQ</p>
+                            <p><strong>DOORS OPEN:</strong> 7:00 PM</p>
+                            <p><strong>STARTS:</strong> 7:30 PM</p>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <!-- Existing past events below -->
                 <div class="event-card past-event">
                     <div class="poster-container">
                         <img src="images/RobinHoodPoster.jpg" alt="Robin Hood Pantomime Poster" class="event-poster" style="max-width:350px;width:100%;border-radius:8px;box-shadow:0 2px 8px #0002;margin-bottom:20px;">
@@ -107,6 +129,27 @@
             });
         });
     </script>
+    <script>
+document.addEventListener('DOMContentLoaded', function() {
+    var portalLinks = document.querySelectorAll('a[href="members/index.html"]');
+    portalLinks.forEach(function(link) {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            if (window.aws_amplify && window.aws_amplify.Auth) {
+                window.aws_amplify.Auth.currentAuthenticatedUser()
+                    .then(function() {
+                        window.location.href = 'members/members.html';
+                    })
+                    .catch(function() {
+                        window.location.href = 'members/index.html';
+                    });
+            } else {
+                window.location.href = 'members/index.html';
+            }
+        });
+    });
+});
+</script>
 
 </body>
 </html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encore Wales - Member Details</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="icon" href="../images/logo.jpg" type="image/jpeg">
+    <link href="https://fonts.googleapis.com/css2?family=Impact&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../events.html">Past Events</a></li>
+                    <li><a href="../future-events.html">Future Events</a></li>
+                    <li><a href="../join.html">Join Us</a></li>
+                    <li><a href="../contact.html">Contact</a></li>
+                    <li><a href="../policies.html">Policies</a></li>
+                    <li><a href="members.html">Members Area</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <section class="about-section">
+        <div class="container" style="max-width:600px;margin:2em auto;">
+            <h2>My Details</h2>
+            <div id="member-details" style="display:none;"></div>
+            <div id="member-error" style="color:red;margin-top:10px;"></div>
+            <button id="signout-btn" style="margin-top:2em;">Sign Out</button>
+        </div>
+    </section>
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>Email: info@encorewales.co.uk</p>
+                    <p>Venue: The Warehouse, Faith Church, Rogerstone</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Follow Us!</h4>
+                    <div class="social-links">
+                        <a href="https://facebook.com/EncoreSouthWales" target="_blank"><img src="../images/facebook-icon.png" alt="Facebook"></a>
+                        <a href="https://instagram.com/encore_wales" target="_blank"><img src="../images/instagram-icon.png" alt="Instagram"></a>
+                        <a href="https://tiktok.com/@encore.wales" target="_blank"><img src="../images/tiktok-icon.png" alt="TikTok"></a>
+                    </div>
+                </div>
+            </div>
+            <p>&copy; 2026 Encore Wales Theatre Group. All rights reserved.</p>
+            <div class="charity-info" style="font-size: 0.8rem; color: #aaa; margin-top: 20px; text-align: center; max-width: 800px; margin-left: auto; margin-right: auto;">
+                <p style="margin-bottom: 5px;">Encore Wales is a Charitable Incorporated Organisation (CIO), registered in England and Wales (Charity Number 1214191)</p>
+                <p>Our charitable object is "to promote the advancement and improvement of general education in relation to all aspects of the art of drama and musical theatrical performance for all in the local community."</p>
+            </div>
+        </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/aws-amplify@4.3.24/dist/aws-amplify.min.js"></script>
+    <script src="amplify-config.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        window.aws_amplify.Amplify.configure(window.amplifyConfig);
+        var detailsDiv = document.getElementById('member-details');
+        var errorDiv = document.getElementById('member-error');
+        var signoutBtn = document.getElementById('signout-btn');
+        window.aws_amplify.Auth.currentAuthenticatedUser()
+            .then(function(user) {
+                var attrs = user.attributes;
+                var html = '<table style="width:100%;margin-bottom:2em;">';
+                html += '<tr><th style="text-align:left;">Field</th><th style="text-align:left;">Value</th></tr>';
+                for (var key in attrs) {
+                    html += '<tr><td>' + key + '</td><td>' + attrs[key] + '</td></tr>';
+                }
+                html += '</table>';
+                detailsDiv.innerHTML = html;
+                detailsDiv.style.display = 'block';
+            })
+            .catch(function(err) {
+                errorDiv.textContent = 'You must be signed in to view your details.';
+            });
+        signoutBtn.onclick = function() {
+            window.aws_amplify.Auth.signOut().then(() => window.location.href = 'index.html');
+        };
+    });
+    </script>
+</body>
+</html>

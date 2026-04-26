@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encore Wales - Sign Up</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <div class="container" style="max-width:400px;margin:2em auto;">
+        <h2>Sign Up</h2>
+        <form id="signup-form" class="amplify-container">
+            <label for="signup-email">Email:</label><br>
+            <input type="email" id="signup-email" name="signup-email" required><br><br>
+            <label for="signup-name">Name:</label><br>
+            <input type="text" id="signup-name" name="signup-name" required><br><br>
+            <label for="signup-phone">Phone Number (optional):</label><br>
+            <input type="tel" id="signup-phone" name="signup-phone" placeholder="+441234567890"><br><br>
+            <label for="signup-password">Password:</label><br>
+            <input type="password" id="signup-password" name="signup-password" required><br><br>
+            <label for="signup-password-confirm">Confirm Password:</label><br>
+            <input type="password" id="signup-password-confirm" name="signup-password-confirm" required><br><br>
+            <button type="submit">Sign Up</button>
+            <div id="signup-error" style="color:red;margin-top:10px;"></div>
+            <div id="signup-success" style="color:green;margin-top:10px;"></div>
+        </form>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/aws-amplify@4.3.24/dist/aws-amplify.min.js"></script>
+    <script src="amplify-config.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        window.aws_amplify.Amplify.configure(window.amplifyConfig);
+        var signupForm = document.getElementById('signup-form');
+        signupForm.onsubmit = async function(e) {
+            e.preventDefault();
+            var email = document.getElementById('signup-email').value;
+            var name = document.getElementById('signup-name').value;
+            var phone = document.getElementById('signup-phone').value;
+            // Convert UK phone numbers to E.164 format if needed
+            if (phone && phone.match(/^0[1-9][0-9]{8,}$/)) {
+                // Remove leading zero and add +44
+                phone = '+44' + phone.substring(1);
+            }
+            var password = document.getElementById('signup-password').value;
+            var passwordConfirm = document.getElementById('signup-password-confirm').value;
+            var errorDiv = document.getElementById('signup-error');
+            var successDiv = document.getElementById('signup-success');
+            errorDiv.textContent = '';
+            successDiv.textContent = '';
+            // Password validation
+            var passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z\d]).{8,}$/;
+            if (!passwordRegex.test(password)) {
+                errorDiv.textContent = 'Password must be at least 8 characters and include lower and uppercase letters, a number, and a special character.';
+                return false;
+            }
+            if (password !== passwordConfirm) {
+                errorDiv.textContent = 'Passwords do not match.';
+                return false;
+            }
+            // Build attributes
+            var attributes = {
+                email: email,
+                name: name
+            };
+            if (phone) {
+                attributes.phone_number = phone;
+            }
+            // Sign up
+            try {
+                await window.aws_amplify.Auth.signUp({
+                    username: email,
+                    password: password,
+                    attributes: attributes
+                });
+                // Redirect to confirmation page on success, passing email as query param
+                window.location.href = 'confirm.html?email=' + encodeURIComponent(email);
+            } catch (err) {
+                errorDiv.textContent = err.message || 'Sign-up failed.';
+            }
+            return false;
+        };
+    });
+    </script>
+</body>
+</html>

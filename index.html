@@ -20,6 +20,7 @@
                     <li><a href="join.html">Join Us</a></li>
                     <li><a href="contact.html">Contact</a></li>
                     <li><a href="policies.html">Policies</a></li>
+                    <li><a href="members/index.html">Members Portal</a></li>
                 </ul>
             </nav>
         </div>
@@ -113,6 +114,36 @@
             setTimeout(showSlides, 4000); // Change image every 4 seconds
         }
     </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/aws-amplify@4.3.24/dist/aws-amplify.min.js"></script>
+<script src="members/amplify-config.js"></script>
+<script>
+function onAmplifyReady(callback) {
+    if (window.aws_amplify && window.aws_amplify.Auth && window.amplifyConfig) {
+        window.aws_amplify.Amplify.configure(window.amplifyConfig);
+        callback();
+    } else {
+        setTimeout(function() { onAmplifyReady(callback); }, 50);
+    }
+}
+document.addEventListener('DOMContentLoaded', function() {
+    onAmplifyReady(function() {
+        var portalLinks = document.querySelectorAll('a[href="members/index.html"]');
+        portalLinks.forEach(function(link) {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                window.aws_amplify.Auth.currentAuthenticatedUser()
+                    .then(function() {
+                        window.location.href = 'members/members.html';
+                    })
+                    .catch(function() {
+                        window.location.href = 'members/index.html';
+                    });
+            });
+        });
+    });
+});
+</script>
 
 </body>
 </html>

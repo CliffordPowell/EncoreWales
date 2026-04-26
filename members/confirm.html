@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encore Wales - Confirm Account</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <div class="container" style="max-width:400px;margin:2em auto;">
+        <h2>Confirm Your Account</h2>
+        <form id="confirm-form" class="amplify-container">
+            <label for="confirm-email">Email:</label><br>
+            <input type="email" id="confirm-email" name="confirm-email" required><br><br>
+            <label for="confirm-code">Confirmation Code:</label><br>
+            <input type="text" id="confirm-code" name="confirm-code" required><br><br>
+            <button type="submit">Confirm Account</button>
+            <div id="confirm-error" style="color:red;margin-top:10px;"></div>
+            <div id="confirm-success" style="color:green;margin-top:10px;"></div>
+        </form>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/aws-amplify@4.3.24/dist/aws-amplify.min.js"></script>
+    <script src="amplify-config.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        window.aws_amplify.Amplify.configure(window.amplifyConfig);
+        // Pre-fill email if present in query string
+        var params = new URLSearchParams(window.location.search);
+        var emailPrefill = params.get('email');
+        if (emailPrefill) {
+            document.getElementById('confirm-email').value = emailPrefill;
+        }
+        var confirmForm = document.getElementById('confirm-form');
+        confirmForm.onsubmit = async function(e) {
+            e.preventDefault();
+            var email = document.getElementById('confirm-email').value;
+            var code = document.getElementById('confirm-code').value;
+            var errorDiv = document.getElementById('confirm-error');
+            var successDiv = document.getElementById('confirm-success');
+            errorDiv.textContent = '';
+            successDiv.textContent = '';
+            try {
+                await window.aws_amplify.Auth.confirmSignUp(email, code);
+                // Attempt auto sign-in after confirmation
+                try {
+                    await window.aws_amplify.Auth.signIn(email, password);
+                    window.location.href = 'members.html';
+                } catch (signinErr) {
+                    // If auto sign-in fails, redirect to login page
+                    window.location.href = 'index.html';
+                }
+            } catch (err) {
+                errorDiv.textContent = err.message || 'Confirmation failed.';
+            }
+            return false;
+        };
+    });
+    </script>
+</body>
+</html>
