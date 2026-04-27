@@ -1,3 +1,37 @@
+/* --- Membership Pricing Section --- */
+.membership-pricing {
+    background: var(--color-primary);
+    color: #222;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    padding: 2em 2em 1.5em 2em;
+    margin: 2em 0;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.membership-pricing h3 {
+    color: #b22222;
+    font-family: var(--font-heading);
+    font-size: 2em;
+    margin-bottom: 0.5em;
+}
+.membership-pricing ul {
+    color: #b22222;
+    font-size: 1.15em;
+    margin-bottom: 1em;
+}
+.membership-pricing li {
+    margin-bottom: 0.5em;
+}
+.membership-pricing a {
+    color: #b22222;
+    text-decoration: underline;
+}
+.membership-pricing p {
+    color: #222;
+    font-size: 1.08em;
+}
 /* Style Sheet: style.css */
 
 /* --- Variables and Reset --- */
